@@ -2,4 +2,4 @@ language: ruby
 rvm:
   - "2.0.0"
 before_install:
-  - cd ext/timestamp && ruby extconf.rb && make && mv timestamp.so ../../lib/ && cd ../..
+  - cd ext/timestamp && ruby extconf.rb && make && mv timestamp.so ../../lib/ || ls -al ; cd ../..
