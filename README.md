@@ -1,4 +1,6 @@
-timestamp-gem
-=============
+timestamp
+=========
 
-Time.current_timestamp
+```ruby
+Time.current_timestamp  #=> int
+```
