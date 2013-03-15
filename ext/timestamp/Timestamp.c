@@ -1,4 +1,5 @@
 #include "ruby.h"
+#include <time.h>
 
 /*
  *  call-seq:
