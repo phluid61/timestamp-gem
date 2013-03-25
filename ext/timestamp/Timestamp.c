@@ -63,36 +63,6 @@ time_s_timestamp(VALUE klass)
 
 /*
  *  call-seq:
- *     Time.tick  -> int
- * 
- * Returns a microsecond timestamp on the system's monotonic clock.
- *
- *     Time.timestamp  #=> 17817203921
- */
-
-static VALUE
-time_s_tick(VALUE klass)
-{
-    VALUE t;
-
-#ifdef HAVE_CLOCK_GETTIME
-    struct timespec ts;
-    if (clock_gettime(CLOCK_MONOTONIC, &ts) == -1) {
-	rb_sys_fail("clock_gettime");
-    }
-    t = rb_uint2big(ts.tv_sec*1000000 + ts.tv_nsec/1000);
-#else
-    struct timeval tv;
-    if (gettimeofday(&tv, 0) < 0) {
-	rb_sys_fail("gettimeofday");
-    }
-    t = rb_uint2big(tv.tv_sec*1000000 + tv.tv_usec);
-#endif
-
-    return t;
-}
-/*
- *  call-seq:
  *     Time.unix_timestamp  -> int
  *
  *  Returns the current time as an integer number of seconds
@@ -141,7 +111,6 @@ time_s_unix_microtime(VALUE klass)
 
 void Init_timestamp() {
     rb_define_singleton_method(rb_cTime, "timestamp", time_s_timestamp, 0);
-    rb_define_singleton_method(rb_cTime, "tick", time_s_tick, 0);
     rb_define_singleton_method(rb_cTime, "unix_timestamp", time_s_unix_timestamp, 0);
     rb_define_singleton_method(rb_cTime, "unix_microtime", time_s_unix_microtime, 0);
 }
