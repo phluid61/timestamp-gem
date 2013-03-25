@@ -26,33 +26,71 @@
 #include "ruby.h"
 #include <time.h>
 
+#if defined(HAVE_SYS_TIME_H)
+#include <sys/time.h>
+#endif
+
 /*
  *  call-seq:
  *     Time.timestamp  -> int
  * 
  * Returns a nanosecond timestamp on the system's monotonic clock.
  *
- *     Time.timestamp  #=> 817203921822
+ *     Time.timestamp  #=> 17817203921822
  */
 
 static VALUE
 time_s_timestamp(VALUE klass)
 {
-#ifdef HAVE_CLOCK_GETTIME                                                                                                                                                                             
+    VALUE t;
+
+#ifdef HAVE_CLOCK_GETTIME
     struct timespec ts;
-    if (clock_gettime(CLOCK_REALTIME, &ts) == -1) {
+    if (clock_gettime(CLOCK_MONOTONIC, &ts) == -1) {
 	rb_sys_fail("clock_gettime");
     }
-    return INT2NUM((ts.tv_sec * 1000000000) + ts.tv_nsec);
+    t = rb_uint2big(ts.tv_sec*1000000000 + ts.tv_nsec);
 #else
     struct timeval tv;
     if (gettimeofday(&tv, 0) < 0) {
 	rb_sys_fail("gettimeofday");
     }
-    return INT2NUM((ts.tv_sec * 1000000000) + (ts.tv_usec*1000));
+    t = rb_uint2big(tv.tv_sec*1000000000 + tv.tv_usec*1000);
 #endif
+
+    return t;
 }
 
+/*
+ *  call-seq:
+ *     Time.tick  -> int
+ * 
+ * Returns a microsecond timestamp on the system's monotonic clock.
+ *
+ *     Time.timestamp  #=> 17817203921
+ */
+
+static VALUE
+time_s_tick(VALUE klass)
+{
+    VALUE t;
+
+#ifdef HAVE_CLOCK_GETTIME
+    struct timespec ts;
+    if (clock_gettime(CLOCK_MONOTONIC, &ts) == -1) {
+	rb_sys_fail("clock_gettime");
+    }
+    t = rb_uint2big(ts.tv_sec*1000000 + ts.tv_nsec/1000);
+#else
+    struct timeval tv;
+    if (gettimeofday(&tv, 0) < 0) {
+	rb_sys_fail("gettimeofday");
+    }
+    t = rb_uint2big(tv.tv_sec*1000000 + tv.tv_usec);
+#endif
+
+    return t;
+}
 /*
  *  call-seq:
  *     Time.unix_timestamp  -> int
@@ -82,18 +120,28 @@ time_s_unix_timestamp(VALUE klass)
 static VALUE
 time_s_unix_microtime(VALUE klass)
 {
-    struct timeval tv;
     double t;
+#ifdef HAVE_CLOCK_GETTIME
+    struct timespec ts;
+    if (clock_gettime(CLOCK_REALTIME, &ts) == -1) {
+	rb_sys_fail("clock_gettime");
+    }
+    t = (double)ts.tv_sec;
+    t += ((double)ts.tv_nsec / 1000000000.0);
+#else
+    struct timeval tv;
     if (gettimeofday(&tv, 0) < 0) {
 	rb_sys_fail("gettimeofday");
     }
     t = (double)tv.tv_sec;
     t += ((double)tv.tv_usec / 1000000.0);
+#endif
     return rb_float_new(t);
 }
 
 void Init_timestamp() {
     rb_define_singleton_method(rb_cTime, "timestamp", time_s_timestamp, 0);
+    rb_define_singleton_method(rb_cTime, "tick", time_s_tick, 0);
     rb_define_singleton_method(rb_cTime, "unix_timestamp", time_s_unix_timestamp, 0);
     rb_define_singleton_method(rb_cTime, "unix_microtime", time_s_unix_microtime, 0);
 }

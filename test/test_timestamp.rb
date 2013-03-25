@@ -5,10 +5,10 @@ require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
 
 class Test_timestamp < Test::Unit::TestCase
 	def test_timestamp
-		stp = [Time.timestamp, Time.timestamp, Time.timestamp]
+		stp = 1000.times.map{Time.timestamp}
 		stp.inject do |m,t|
-			d = t - m
-			assert( d > 0, "Retrograde timestamp #{m} to #{t}" )
+			assert( t >= m, "Retrograde timestamp #{m} to #{t}" )
+			t
 		end
 	end
 	def test_unix_timestamp
