@@ -43,13 +43,13 @@ time_s_timestamp(VALUE klass)
     if (clock_gettime(CLOCK_REALTIME, &ts) == -1) {
 	rb_sys_fail("clock_gettime");
     }
-    return INT2NUM(ts.tv_sec * 1000000000) + ts.tv_nsec;
+    return INT2NUM((ts.tv_sec * 1000000000) + ts.tv_nsec);
 #else
     struct timeval tv;
     if (gettimeofday(&tv, 0) < 0) {
 	rb_sys_fail("gettimeofday");
     }
-    return INT2NUM(ts.tv_sec * 1000000000) + (ts.tv_usec*1000);
+    return INT2NUM((ts.tv_sec * 1000000000) + (ts.tv_usec*1000));
 #endif
 }
 
