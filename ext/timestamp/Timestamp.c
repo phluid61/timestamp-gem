@@ -93,6 +93,7 @@ time_s_unix_microtime(VALUE klass)
 }
 
 void Init_timestamp() {
+    rb_define_singleton_method(rb_cTime, "timestamp", time_s_timestamp, 0);
     rb_define_singleton_method(rb_cTime, "unix_timestamp", time_s_unix_timestamp, 0);
     rb_define_singleton_method(rb_cTime, "unix_microtime", time_s_unix_microtime, 0);
 }
