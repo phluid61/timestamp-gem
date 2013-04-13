@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'timestamp'
-  s.version = '1.0.0'
-  s.date = '2013-03-26'
+  s.version = '1.0.1'
+  s.date = '2013-04-13'
   s.summary = 'Time.timestamp'
   s.description = 'Defines Time.timestamp and .unix_timestamp , from https://bugs.ruby-lang.org/issues/8096'
   s.authors = ['Matthew Kerwin']
