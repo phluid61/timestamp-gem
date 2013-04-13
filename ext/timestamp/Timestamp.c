@@ -74,7 +74,7 @@ time_s_timestamp(VALUE klass)
 static VALUE
 time_s_unix_timestamp(VALUE klass)
 {
-    return INT2NUM( time(NULL) );
+    return LONG2NUM( time(NULL) );
 }
 
 /*
