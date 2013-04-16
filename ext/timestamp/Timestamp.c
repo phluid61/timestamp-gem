@@ -64,11 +64,13 @@ time_s_timestamp(VALUE klass)
 /*
  *  call-seq:
  *     Time.unix_timestamp  -> int
+ *     Time.unix_time       -> int
  *
  *  Returns the current time as an integer number of seconds
  *  since the Epoch.
  *
  *     Time.unix_timestamp  #=> 1363352771
+ *     Time.unix_time       #=> 1363352771
  */
 
 static VALUE
@@ -111,6 +113,7 @@ time_s_unix_microtime(VALUE klass)
 
 void Init_timestamp() {
     rb_define_singleton_method(rb_cTime, "timestamp", time_s_timestamp, 0);
+    rb_define_singleton_method(rb_cTime, "unix_time", time_s_unix_timestamp, 0);
     rb_define_singleton_method(rb_cTime, "unix_timestamp", time_s_unix_timestamp, 0);
     rb_define_singleton_method(rb_cTime, "unix_microtime", time_s_unix_microtime, 0);
 }

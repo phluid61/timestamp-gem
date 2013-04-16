@@ -45,29 +45,45 @@ public class Timestamp implements BasicLibraryService {
 
     /*
      *  call-seq:
-     *     Time.current_timestamp -> int
-     *     Time.timestamp         -> int
+     *     Time.timestamp  -> int
+     * 
+     * Returns a nanosecond timestamp on the system's monotonic clock.
+     *
+     *     Time.timestamp  #=> 17817203921822
+     */
+
+    @JRubyMethod( name = "timestamp" )
+    public IRubyObject timestamp() {
+	//return new RubyFixnum(this.runtime, System.currentTimeMillis * 1000);
+	return new RubyFixnum(this.runtime, System.nanoTime());
+    }
+
+
+    /*
+     *  call-seq:
+     *     Time.unix_timestamp -> int
+     *     Time.unix_time      -> int
      *
      *  Returns the current time as an integer number of seconds
      *  since the Epoch.
      *
-     *     Time.current_timestamp  #=> 1363352771
-     *     Time.timestamp          #=> 1363352771
+     *     Time.unix_timestamp  #=> 1363352771
+     *     Time.unix_time       #=> 1363352771
      */
 
-    @JRubyMethod( name = "current_timestamp", alias = { "timestamp" } )
+    @JRubyMethod( name = "unix_timestamp", alias = { "unix_time" } )
     public IRubyObject current_timestamp() {
 	return new RubyFixnum(this.runtime, System.currentTimeMillis / 1000);
     }
 
     /*
      *  call-seq:
-     *     Time.microtime  -> float
+     *     Time.unix_microtime  -> float
      *
      *  Returns the current time as a floating-point number of seconds
      *  since the Epoch.
      *
-     *     Time.microtime  #=> 1363352771.315240
+     *     Time.unix_microtime  #=> 1363352771.315240
      */
 
     @JRubyMethod( name = "microtime" )
