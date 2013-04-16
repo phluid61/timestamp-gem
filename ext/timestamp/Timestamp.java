@@ -86,7 +86,7 @@ public class Timestamp implements BasicLibraryService {
      *     Time.unix_microtime  #=> 1363352771.315240
      */
 
-    @JRubyMethod( name = "microtime" )
+    @JRubyMethod( name = "unix_microtime" )
     public IRubyObject microtime() {
 	return new RubyFloat(this.runtime, System.currentTimeMillis / 1000.0);
     }
