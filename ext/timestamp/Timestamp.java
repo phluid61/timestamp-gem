@@ -25,11 +25,13 @@
 
 package au.net.kerwin.jruby;
 
+import java.io.IOException;
 import org.jruby.Ruby;
 import org.jruby.RubyClass;
 import org.jruby.RubyFixnum;
 import org.jruby.RubyFloat;
 import org.jruby.anno.JRubyMethod;
+import org.jruby.runtime.ThreadContext;
 import org.jruby.runtime.builtin.IRubyObject;
 import org.jruby.runtime.load.BasicLibraryService;
 
@@ -37,7 +39,6 @@ public class Timestamp implements BasicLibraryService {
     private Ruby runtime;
 
     public boolean basicLoad(Ruby runtime) throws IOException {
-	this.runtime = runtime;
 	RubyClass rb_cTime = runtime.getClass("Time");
 	rb_cTime.defineAnnotatedMethods(Timestamp.class);
 	return true;
@@ -52,10 +53,9 @@ public class Timestamp implements BasicLibraryService {
      *     Time.timestamp  #=> 17817203921822
      */
 
-    @JRubyMethod( name = "timestamp" )
-    public IRubyObject timestamp() {
-	//return new RubyFixnum(this.runtime, System.currentTimeMillis * 1000);
-	return new RubyFixnum(this.runtime, System.nanoTime());
+    @JRubyMethod( meta = true )
+    public IRubyObject timestamp(ThreadContext context) {
+	return context.runtime.newFixnum(System.nanoTime());
     }
 
 
@@ -71,9 +71,9 @@ public class Timestamp implements BasicLibraryService {
      *     Time.unix_time       #=> 1363352771
      */
 
-    @JRubyMethod( name = "unix_timestamp", alias = { "unix_time" } )
-    public IRubyObject current_timestamp() {
-	return new RubyFixnum(this.runtime, System.currentTimeMillis / 1000);
+    @JRubyMethod( name = { "unix_timestamp", "unix_time" }, meta = true )
+    public IRubyObject unix_timestamp(ThreadContext context) {
+	return context.runtime.newFixnum(System.currentTimeMillis() / 1000);
     }
 
     /*
@@ -86,9 +86,10 @@ public class Timestamp implements BasicLibraryService {
      *     Time.unix_microtime  #=> 1363352771.315240
      */
 
-    @JRubyMethod( name = "unix_microtime" )
-    public IRubyObject microtime() {
-	return new RubyFloat(this.runtime, System.currentTimeMillis / 1000.0);
+    @JRubyMethod( meta = true )
+    public IRubyObject unix_microtime(ThreadContext context) {
+	return context.runtime.newFloat(System.currentTimeMillis() / 1000.0);
     }
+
 }
 

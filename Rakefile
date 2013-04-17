@@ -1,6 +1,19 @@
 #!/usr/bin/env rake
+require 'rubygems'
+unless ENV['RUBY_CC_VERSION']
+	require 'bundler'
+	Bundler.setup
+	Bundler::GemHelper.install_tasks
+end
+ENV['RUBYOPT'] = nil
 
 spec = Gem::Specification.load('timestamp.gemspec')
+
+task :default => [:timestamp]
+task :timestamp => :compile
+
+# compile: ext/timestamp/Timestamp.?
+#   $(CC) $<
 if RUBY_PLATFORM =~ /java/
 	require 'rake/javaextensiontask'
 	Rake::JavaExtensionTask.new('timestamp', spec)
@@ -9,10 +22,19 @@ else
 	Rake::ExtensionTask.new('timestamp', spec)
 end
 
-require 'bundler/gem_tasks'
+# test: lib/timestamp.* test/test_timestamp.rb
+#   ruby test/test_timestamp.rb
 require 'rake/testtask'
-task :default => [:test]
 Rake::TestTask.new do |tt|
 	tt.verbose = true
 end
+task :test => :compile
+
+# clean:
+#   rm -r ...
+require 'rake/clean'
+CLEAN.include [
+	'pkg', 'tmp',
+	'**/*.{o,bundler,jar,so}',
+]
 

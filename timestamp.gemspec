@@ -16,7 +16,9 @@ Gem::Specification.new do |s|
   end
   s.files = files
 
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'rake-compiler'
+  s.add_development_dependency 'bundler'
 
   s.homepage = 'http://rubygems.org/gems/timestamp'
   s.license = 'Simplified BSD License'
