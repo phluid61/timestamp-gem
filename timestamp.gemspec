@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'timestamp'
-  s.version = '1.0.1'
-  s.date = '2013-04-13'
+  s.version = '1.0.2'
+  s.date = '2013-04-17'
   s.summary = 'Time.timestamp'
   s.description = 'Defines Time.timestamp and .unix_timestamp , from https://bugs.ruby-lang.org/issues/8096'
   s.authors = ['Matthew Kerwin']
@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
     s.extensions = ['ext/timestamp/extconf.rb']
   end
   s.files = files
+
+  s.add_development_dependency 'rake-compiler'
 
   s.homepage = 'http://rubygems.org/gems/timestamp'
   s.license = 'Simplified BSD License'
