@@ -1,7 +1,12 @@
 require 'test/unit'
 
 $VERBOSE = true
-require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
+if defined?(JRUBY_VERSION)
+	#require 'java'
+	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
+else
+	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
+end
 
 class Test_timestamp < Test::Unit::TestCase
 	def test_timestamp
