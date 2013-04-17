@@ -6,3 +6,4 @@ rvm:
   - jruby-19mode
 before_install:
 #  - cd ext/timestamp ; ruby extconf.rb && make && mv timestamp.so ../../lib/ || ls -al ; cd ../..
+  - rake compile
