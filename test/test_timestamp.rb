@@ -1,12 +1,15 @@
 require 'test/unit'
-
 $VERBOSE = true
+
+pre = Time.public_methods
 if defined?(JRUBY_VERSION)
 	#require 'java'
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
 else
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
 end
+post = Time.public_methods
+p (post - pre).sort
 
 class Test_timestamp < Test::Unit::TestCase
 	def test_timestamp
