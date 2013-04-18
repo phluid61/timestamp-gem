@@ -2,6 +2,8 @@ require 'benchmark'
 
 require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
 
+puts RUBY_DESCRIPTION
+
 n = 1_000_000
 Benchmark.bm(20) do |x|
 	x.report('Time.now.to_i')       { for i in 1..n; Time.now.to_i; end }

@@ -30,6 +30,11 @@ Rake::TestTask.new do |tt|
 end
 task :test => :compile
 
+# bench: lib/timestamp.* bench/bench_timestamp.rb
+task :bench => :compile do
+	exec "ruby -Ilib -Iext bench/bench_timestamp.rb"
+end
+
 # clean:
 #   rm -r ...
 require 'rake/clean'
