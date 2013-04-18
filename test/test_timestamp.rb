@@ -4,10 +4,8 @@ $VERBOSE = true
 if defined?(JRUBY_VERSION)
 	require 'java'
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
-	puts "required jar"
 else
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
-	puts "required native file"
 end
 
 class Test_timestamp < Test::Unit::TestCase
@@ -17,6 +15,12 @@ class Test_timestamp < Test::Unit::TestCase
 			assert( t >= m, "Retrograde timestamp #{m} to #{t}" )
 			t
 		end
+	end
+	def test_unix_time
+		int = Time.now.to_i
+		stp = Time.unix_time
+		d = (stp-int).abs
+		assert( d <= 1, "Unexpectedly highly difference #{d}" )
 	end
 	def test_unix_timestamp
 		int = Time.now.to_i
