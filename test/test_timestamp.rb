@@ -4,8 +4,10 @@ $VERBOSE = true
 if defined?(JRUBY_VERSION)
 	require 'java'
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
+	puts "required jar"
 else
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
+	puts "required native file"
 end
 
 class Test_timestamp < Test::Unit::TestCase
