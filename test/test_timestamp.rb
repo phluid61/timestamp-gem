@@ -12,8 +12,8 @@ if defined?(JRUBY_VERSION)
 	if diff.empty?
 		p diff.sort, post.sort
 		#p Dir["#{File.dirname File.dirname(__FILE__)}/lib/*"]
-		puts "jar -t -f '#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar'"
-		#`jar -t -f '#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar'`
+		#puts "jar -t -f '#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar'"
+		puts `jar -t -f '#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar'`
 		exit 1
 	end
 else
