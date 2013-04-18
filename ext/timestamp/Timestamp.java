@@ -39,6 +39,7 @@ public class Timestamp implements BasicLibraryService {
     private Ruby runtime;
 
     public boolean basicLoad(Ruby runtime) throws IOException {
+	this.runtime = runtime;
 	RubyClass rb_cTime = runtime.getClass("Time");
 	rb_cTime.defineAnnotatedMethods(Timestamp.class);
 	return true;
@@ -54,8 +55,8 @@ public class Timestamp implements BasicLibraryService {
      */
 
     @JRubyMethod( meta = true )
-    public IRubyObject timestamp(ThreadContext context) {
-	return context.runtime.newFixnum(System.nanoTime());
+    public IRubyObject timestamp() {
+	return runtime.newFixnum(System.nanoTime());
     }
 
 
@@ -72,8 +73,8 @@ public class Timestamp implements BasicLibraryService {
      */
 
     @JRubyMethod( name = { "unix_timestamp", "unix_time" }, meta = true )
-    public IRubyObject unix_timestamp(ThreadContext context) {
-	return context.runtime.newFixnum(System.currentTimeMillis() / 1000);
+    public IRubyObject unix_timestamp() {
+	return runtime.newFixnum(System.currentTimeMillis() / 1000);
     }
 
     /*
@@ -87,8 +88,8 @@ public class Timestamp implements BasicLibraryService {
      */
 
     @JRubyMethod( meta = true )
-    public IRubyObject unix_microtime(ThreadContext context) {
-	return context.runtime.newFloat(System.currentTimeMillis() / 1000.0);
+    public IRubyObject unix_microtime() {
+	return runtime.newFloat(System.currentTimeMillis() / 1000.0);
     }
 
 }
