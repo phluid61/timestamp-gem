@@ -23,7 +23,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package au.net.kerwin.jruby;
+//package au.net.kerwin.jruby;
 
 import java.io.IOException;
 import org.jruby.Ruby;
