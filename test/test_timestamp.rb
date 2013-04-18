@@ -2,7 +2,7 @@ require 'test/unit'
 
 $VERBOSE = true
 if defined?(JRUBY_VERSION)
-	require 'java'
+	#require 'java'
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
 else
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
