@@ -1,17 +1,22 @@
 require 'test/unit'
 $VERBOSE = true
 
-pre = (Time.public_methods - Time.instance_methods)
 if defined?(JRUBY_VERSION)
+	pre = (Time.public_methods - Time.instance_methods)
+
 	#require 'java'
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
+
+	post = (Time.public_methods - Time.instance_methods)
+	diff = (post - pre)
+	if diff.empty?
+		p diff.sort, post.sort
+		`jar -t -f '#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar'`
+		exit 1
+	end
 else
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
 end
-post = (Time.public_methods - Time.instance_methods)
-diff = (post - pre)
-p diff.sort, pre.sort, post.sort
-throw "methods not defined!" if diff.empty?
 
 class Test_timestamp < Test::Unit::TestCase
 	def test_timestamp
