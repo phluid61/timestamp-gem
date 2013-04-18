@@ -11,8 +11,9 @@ if defined?(JRUBY_VERSION)
 	diff = (post - pre)
 	if diff.empty?
 		p diff.sort, post.sort
-		`jar -t -f '#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar'`
-		throw 'methods not defined'
+		Dir.glob["#{File.dirname File.dirname(__FILE__)}/lib/*"]
+		#`jar -t -f '#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar'`
+		exit 1
 	end
 else
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
