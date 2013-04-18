@@ -11,7 +11,7 @@ if defined?(JRUBY_VERSION)
 	diff = (post - pre)
 	if diff.empty?
 		p diff.sort, post.sort
-		Dir.glob["#{File.dirname File.dirname(__FILE__)}/lib/*"]
+		p Dir.glob["#{File.dirname File.dirname(__FILE__)}/lib/*"]
 		#`jar -t -f '#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar'`
 		exit 1
 	end
