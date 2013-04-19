@@ -28,7 +28,14 @@ require 'rake/testtask'
 Rake::TestTask.new do |tt|
 	tt.verbose = true
 end
-task :test => :compile
+#task :test => :compile
+task :test => :verify
+
+task :verify => :compile do
+	if RUBY_PLATFORM =~ /java/
+		puts `jar -t -f '#{File.dirname(__FILE__)}/lib/timestamp.jar'`
+	end
+end
 
 # bench: lib/timestamp.* bench/bench_timestamp.rb
 task :bench => :compile do

@@ -10,10 +10,8 @@ if defined?(JRUBY_VERSION)
 	post = (Time.public_methods - Time.instance_methods)
 	diff = (post - pre)
 	if diff.empty?
+		$STDERR.print "Timestamp methods not defined on Time class!\n"
 		p diff.sort, post.sort
-		#p Dir["#{File.dirname File.dirname(__FILE__)}/lib/*"]
-		#puts "jar -t -f '#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar'"
-		puts `jar -t -f '#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar'`
 		exit 1
 	end
 else
