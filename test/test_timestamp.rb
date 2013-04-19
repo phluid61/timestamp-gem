@@ -5,12 +5,12 @@ if defined?(JRUBY_VERSION)
 	pre = (Time.public_methods - Time.instance_methods)
 
 	#require 'java'
-	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
+	require "jar:#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
 
 	post = (Time.public_methods - Time.instance_methods)
 	diff = (post - pre)
 	if diff.empty?
-		$STDERR.print "Timestamp methods not defined on Time class!\n"
+		STDERR.print "Timestamp methods not defined on Time class!\n"
 		p diff.sort, post.sort
 		exit 1
 	end
