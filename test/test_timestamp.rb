@@ -5,7 +5,8 @@ if defined?(JRUBY_VERSION)
 	pre = (Time.public_methods - Time.instance_methods)
 
 	#require 'java'
-	require "jar:#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
+	#require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
+	require_relative "jar:../lib/timestamp"
 
 	post = (Time.public_methods - Time.instance_methods)
 	diff = (post - pre)
