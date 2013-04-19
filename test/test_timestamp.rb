@@ -4,9 +4,10 @@ $VERBOSE = true
 if defined?(JRUBY_VERSION)
 	pre = (Time.public_methods - Time.instance_methods)
 
-	#require 'java'
 	#require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
-	require_relative "jar:../lib/timestamp"
+	#require_relative "jar:../lib/timestamp"
+	require 'java'
+	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar!/Timestamp.class"
 
 	post = (Time.public_methods - Time.instance_methods)
 	diff = (post - pre)
