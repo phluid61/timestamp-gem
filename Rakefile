@@ -33,6 +33,7 @@ task :test => :verify
 
 task :verify => :compile do
 	if RUBY_PLATFORM =~ /java/
+		puts "jar -t -f '#{File.dirname(__FILE__)}/lib/timestamp.jar'"
 		puts `jar -t -f '#{File.dirname(__FILE__)}/lib/timestamp.jar'`
 	end
 end
