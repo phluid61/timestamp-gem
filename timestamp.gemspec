@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler'
 
   s.homepage = 'http://rubygems.org/gems/timestamp'
-  s.license = 'Simplified BSD License'
+  s.license = 'ISC License'
 end
