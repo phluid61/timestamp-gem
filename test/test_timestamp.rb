@@ -1,24 +1,24 @@
 require 'test/unit'
 $VERBOSE = true
 
-if defined?(JRUBY_VERSION)
-	pre = (Time.public_methods - Time.instance_methods)
-
-	include Java
-	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
-	#require_relative "jar:../lib/timestamp"
-	#require "jar:#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar!/Timestamp.class"
-
-	post = (Time.public_methods - Time.instance_methods)
-	diff = (post - pre)
-	if diff.empty?
-		STDERR.print "Timestamp methods not defined on Time class!\n"
-		p diff.sort, post.sort
-		exit 1
-	end
-else
+#if defined?(JRUBY_VERSION)
+#	pre = (Time.public_methods - Time.instance_methods)
+#
+#	include Java
+#	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
+#	#require_relative "jar:../lib/timestamp"
+#	#require "jar:#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar!/Timestamp.class"
+#
+#	post = (Time.public_methods - Time.instance_methods)
+#	diff = (post - pre)
+#	if diff.empty?
+#		STDERR.print "Timestamp methods not defined on Time class!\n"
+#		p diff.sort, post.sort
+#		exit 1
+#	end
+#else
 	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
-end
+#end
 
 class Test_timestamp < Test::Unit::TestCase
 	def test_timestamp
