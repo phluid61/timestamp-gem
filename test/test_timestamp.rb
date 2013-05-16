@@ -17,12 +17,6 @@ if defined?(JRUBY_VERSION)
 				t
 			end
 		end
-		def test_unix_time
-			int = Time.now.to_i
-			stp = $timestamp.java_send :unix_time, []
-			d = (stp-int).abs
-			assert( d <= 1, "Unexpectedly highly difference #{d}" )
-		end
 		def test_unix_timestamp
 			int = Time.now.to_i
 			stp = $timestamp.java_send :unix_timestamp, []
