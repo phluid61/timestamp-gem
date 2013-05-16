@@ -28,7 +28,7 @@ import org.jruby.runtime.load.BasicLibraryService;
 public class Timestamp implements BasicLibraryService {
     private Ruby runtime;
 
-   public boolean basicLoad(Ruby runtime) throws IOException {
+    public boolean basicLoad(Ruby runtime) throws IOException {
 	this.runtime = runtime;
 	RubyClass rb_cTime = runtime.getClass("Time");
 	rb_cTime.defineAnnotatedMethods(Timestamp.class);
