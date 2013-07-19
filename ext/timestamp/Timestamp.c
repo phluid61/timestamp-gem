@@ -21,6 +21,15 @@
 #include <sys/time.h>
 #endif
 
+#ifndef MUL_OVERFLOW_SIGNED_INTEGER_P
+#  define MUL_OVERFLOW_SIGNED_INTEGER_P(a, b, min, max) ( \
+     (a) == 0 ? 0 : \
+     (a) == -1 ? (b) < -(max) : \
+     (a) > 0 ? \
+       ((b) > 0 ? (max) / (a) < (b) : (min) / (a) > (b)) : \
+       ((b) > 0 ? (min) / (a) < (b) : (max) / (a) > (b)))
+#endif
+
 #ifdef HAVE_CLOCK_GETTIME
 #  define TIMESPEC timespec
 #  define nsec(tv) ((tv)->tv_nsec)
