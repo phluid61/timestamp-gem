@@ -47,7 +47,6 @@ timespec2num(const struct TIMESPEC *ts) {
 #endif
     return rb_funcall(LONG2FIX(nsec(ts)), '+', 1, rb_funcall(LONG2FIX(1000000000), '*', 1, UINT2NUM(ts->tv_sec)));
 }
-#else
 
 /*
  *  call-seq:
