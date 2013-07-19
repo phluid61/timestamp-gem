@@ -72,7 +72,7 @@ time_s_timestamp(VALUE klass)
 	rb_sys_fail("gettimeofday");
     }
 #endif
-    t = timespec2num(&ts)
+    t = timespec2num(&ts);
     return t;
 }
 
