@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Timestamp (Ruby Gem)</title>
+    <style type="text/css">
+body{
+  margin:0;
+  border:0;
+  padding:20px;
+  background:#fff;
+  color:#000;
+  font:14px/21px Georgia,'Times New Roman',serif;
+}
+a, a:link{color:#00f;}
+a:visited{color:#06f;}
+a:hover,a:focus{color:#09f;}
+a:active{color:#90f;}
+body>h1{
+  margin:0.75em 0 0;
+  padding:0;
+  color:#6c6c6c;
+  font-size:32px; line-height:48px; font-weight:normal;
+}
+.rclass{
+  margin:0.75em 0 0;
+  border:1px solid #dedede; border-radius:3px;
+  padding:0.5em;
+}
+.rclass>h1{
+  margin:0 0 1em;
+  padding:0;
+  color:#6c6c6c;
+  line-height:1em; font-weight:normal;
+}
+.rmeths>h1{
+  margin:2em 0 1.2em;
+  border:1px solid #bbb; border-radius:3px;
+  padding:0.75em 0.5em;
+  background:#dedede;
+  font-size:22px; font-weight:normal;
+}
+.rmeth{
+  margin:0.5em 0;
+  padding:0.5em 0;
+}
+.rmeth>h1{
+  margin:0;
+  border:0;
+  padding:0;
+  font-size:18px; font-weight:bold;
+}
+pre.example{
+  margin:0.5em 0;
+  padding:0.5em;
+  background:#303030;
+  color:#fff;
+  line-height:24px; font-family:monospace;
+  cursor:pointer;
+}
+.ruby-const{color:#7fffd4}
+.ruby-ident{color:#ffdead}
+.ruby-comment{color:#5eff1f;font-weight:bold}
+    </style>
+  </head>
+  <body>
+    <h1>Timestamp (Ruby Gem)</h1>
+    <p>Defines <tt>Time::timestamp</tt> and <tt>Time::unix_timestamp</tt>.</p>
+    <p>See the original discussion at <a href="https://bugs.ruby-lang.org/issues/8096">Ruby-Lang</a> <small>(bugs.ruby-lang.org)</small>.</p>
+    <div class="rclass">
+      <h1>Time</h1>
+      <div class="rmeths">
+        <h1>Public Class Methods</h1>
+        <div class="rmeth">
+          <h1>timestamp</h1>
+          <p>Returns a nanosecond-precision timestamp from the system's monotonic clock. Note that the resolution of the measured time is system-dependent (i.e. while the value displayed is always an integer number of nanoseconds, the values may not necessarily change in increments of exactly one).</p>
+          <p>This time value does not correlate to any absolute, real-world time system; it is only useful for measuring relative (or elapsed) times at a high granularity.  For example, benchmark measurements.</p>
+          <pre class="example ruby"><span class="ruby-const">Time</span>.<span class="ruby-ident">timestamp</span> <span class="ruby-comment"># =&gt; 17817203921822</span></pre>
+        </div>
+        <div class="rmeth">
+          <h1>unix_timestamp</h1>
+          <h1>unix_time</h1>
+          <p>Returns the current real-world time as a whole number of seconds since the Epoch (1-Jan-1970).</p>
+          <pre class="example ruby"><span class="ruby-const">Time</span>.<span class="ruby-ident">unix_timestamp</span> <span class="ruby-comment"># =&gt; 1363352771</span>
+<span class="ruby-const">Time</span>.<span class="ruby-ident">unix_time</span>      <span class="ruby-comment"># =&gt; 1363352771</span></pre>
+        </div>
+        <div class="rmeth">
+          <h1>unix_microtime</h1>
+          <p>Returns the current real-world time as a floating-point number of seconds since the Epoch (1-Jan-1970).</p>
+          <pre class="example ruby"><span class="ruby-const">Time</span>.<span class="ruby-ident">unix_microtime</span> <span class="ruby-comment"># =&gt; 1363352771.315240</span></pre>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
