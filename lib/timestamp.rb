@@ -9,7 +9,7 @@ if defined?(JRUBY_VERSION)
 =end
 	require 'jruby'
 	require File.expand_path('../timestamp.jar', __FILE__)
-	require 'Timestamp/timestamp'
+	require 'timestamp/timestamp'
 
 	class Time
 		@@timestamp = Java::Default::Timestamp.new.java_send :basicLoad, [org.jruby.Ruby], org.jruby.Ruby.getGlobalRuntime
