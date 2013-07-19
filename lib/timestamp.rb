@@ -1,12 +1,5 @@
 
 if defined?(JRUBY_VERSION)
-=begin
-	include Java
-	cp = $CLASSPATH
-	$CLASSPATH << "#{File.dirname(__FILE__)}/timestamp.jar"
-	import 'Timestamp'
-	$CLASSPATH = cp
-=end
 	require 'jruby'
 	require File.expand_path('../timestamp.jar', __FILE__)
 	require 'timestamp'
