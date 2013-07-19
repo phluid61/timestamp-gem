@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
 	s.name    = 'timestamp'
-	s.version = '1.0.3'
+	s.version = '1.0.2'
 	s.date    = '2013-07-19'
 	s.summary = 'Time.timestamp'
 	s.description = <<EOS
