@@ -15,6 +15,19 @@ a, a:link{color:#00f;}
 a:visited{color:#06f;}
 a:hover,a:focus{color:#09f;}
 a:active{color:#90f;}
+dl{
+  margin:1em 0;
+  padding-left:1.5em;
+}
+dt{
+  float:left; clear:left;
+  min-width:5.5em;
+  font-weight:bold;
+}
+dt::before{
+  content:'\2022';
+  padding-right:0.3em;
+}
 body>h1{
   margin:0.75em 0 0;
   padding:0;
@@ -62,10 +75,21 @@ pre.example{
 .ruby-comment{color:#5eff1f;font-weight:bold}
     </style>
   </head>
-  <body>
-    <h1>Timestamp (Ruby Gem)</h1>
-    <p>Defines <tt>Time::timestamp</tt> and <tt>Time::unix_timestamp</tt>.</p>
-    <p>See the original discussion at <a href="https://bugs.ruby-lang.org/issues/8096">Ruby-Lang</a> <small>(bugs.ruby-lang.org)</small>.</p>
+  <body vocab="http://schema.org" typeof="SoftwareApplication">
+    <h1><span property="name">Timestamp</span> (Ruby Gem)</h1>
+    <meta property="applicationSuite" content="rubygems">
+    <div property="description">
+      <p>Defines <tt>Time::timestamp</tt> and <tt>Time::unix_timestamp</tt>.</p>
+      <p>See the original discussion at <a href="https://bugs.ruby-lang.org/issues/8096">Ruby-Lang</a> <small>(bugs.ruby-lang.org)</small>.</p>
+    </div>
+    <dl>
+      <dt>gem</dt>
+      <dd><a href="https://rubygems.org/gems/timestamp">rubygems.org/gems/timestamp</a></dd>
+      <dt>license</dt>
+      <dd><a href="https://raw.github.com/phluid61/timestamp-gem/master/LICENSE" property="publishingPrinciples">ISC</a></dd>
+      <dt>ci-status</dt>
+      <dd><a href="https://travis-ci.org/phluid61/timestamp-gem"><img alt="Build Status" src="https://travis-ci.org/phluid61/timestamp-gem.png"></a></dd>
+    </dl>
     <div class="rclass">
       <h1>Time</h1>
       <div class="rmeths">
@@ -92,3 +116,6 @@ pre.example{
     </div>
   </body>
 </html>
+<!--
+vim: et:sts=2:sw=2
+-->
