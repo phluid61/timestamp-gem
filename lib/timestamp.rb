@@ -12,7 +12,7 @@ if defined?(JRUBY_VERSION)
 	require 'timestamp'
 
 	class Time
-		@@timestamp = Java::Default::Timestamp.new.java_send :basicLoad, [org.jruby.Ruby], org.jruby.Ruby.getGlobalRuntime
+		@@timestamp = Java::Default::Timestamp.new.tap{|ts| ts.java_send :basicLoad, [org.jruby.Ruby], org.jruby.Ruby.getGlobalRuntime }
 		class << self
 			def timestamp
 				@@timestamp.java_send :timestamp, []
