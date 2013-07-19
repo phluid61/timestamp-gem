@@ -1,38 +1,7 @@
 require 'test/unit'
 $VERBOSE = true
 
-if defined?(JRUBY_VERSION)
-	# FIXME !!!
-	include Java
-	$CLASSPATH << "#{File.dirname File.dirname(__FILE__)}/lib/timestamp.jar"
-	import 'Timestamp'
-	$timestamp = Java::Default::Timestamp.new
-	$timestamp.java_send :basicLoad, [org.jruby.Ruby], org.jruby.Ruby.getGlobalRuntime
-
-	class Test_timestamp_java < Test::Unit::TestCase
-		def test_timestamp
-			stp = 1000.times.map{$timestamp.java_send :timestamp, []}
-			stp.inject do |m,t|
-				assert( t >= m, "Retrograde timestamp #{m} to #{t}" )
-				t
-			end
-		end
-		def test_unix_timestamp
-			int = Time.now.to_i
-			stp = $timestamp.java_send :unix_timestamp, []
-			d = (stp-int).abs
-			assert( d <= 1, "Unexpectedly highly difference #{d}" )
-		end
-		def test_unix_microtime
-			flt = Time.now.to_f
-			stp = $timestamp.java_send :unix_microtime, []
-			d = (stp-flt).abs
-			assert( d <= 1, "Unexpectedly highly difference #{d}" )
-		end
-	end
-else
-	require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
-end
+require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
 
 class Test_timestamp < Test::Unit::TestCase
 	def test_timestamp

@@ -7,13 +7,12 @@ unless ENV['RUBY_CC_VERSION']
 end
 ENV['RUBYOPT'] = nil
 
-spec = Gem::Specification.load('timestamp.gemspec')
-
 task :default => [:timestamp]
 task :timestamp => :compile
 
 # compile: ext/timestamp/Timestamp.?
 #   $(CC) $<
+spec = Gem::Specification.load('timestamp.gemspec')
 if RUBY_PLATFORM =~ /java/
 	require 'rake/javaextensiontask'
 	Rake::JavaExtensionTask.new('timestamp', spec)

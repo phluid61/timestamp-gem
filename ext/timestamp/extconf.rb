@@ -1,5 +1,6 @@
 require 'mkmf'
-extension_name = 'timestamp'
-dir_config(extension_name)
-create_makefile(extension_name)
+ext_name = 'timestamp'
+
+dir_config(ext_name)
+create_makefile(ext_name)
 
