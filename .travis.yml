@@ -1,3 +1,7 @@
+branches:
+  except:
+    - gh-pages
+    - win32-support
 language: ruby
 rvm:
   - "2.0.0"
