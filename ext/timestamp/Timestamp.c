@@ -21,6 +21,33 @@
 # include <sys/time.h>
 #endif
 
+#ifndef MUL_OVERFLOW_SIGNED_INTEGER_P
+#  define MUL_OVERFLOW_SIGNED_INTEGER_P(a, b, min, max) ( \
+     (a) == 0 ? 0 : \
+     (a) == -1 ? (b) < -(max) : \
+     (a) > 0 ? \
+       ((b) > 0 ? (max) / (a) < (b) : (min) / (a) > (b)) : \
+       ((b) > 0 ? (min) / (a) < (b) : (max) / (a) > (b)))
+#endif
+
+#ifdef HAVE_CLOCK_GETTIME
+#  define TIMESPEC timespec
+#  define nsec(tv) ((tv)->tv_nsec)
+#else
+#  define TIMESPEC timeval
+#  define nsec(tv) ((tv)->tv_usec*1000)
+#endif
+
+static inline VALUE
+timespec2num(const struct TIMESPEC *ts) {
+#ifdef HAVE_LONG_LONG
+    if (!MUL_OVERFLOW_SIGNED_INTEGER_P(1000000000, (LONG_LONG)ts->tv_sec, LLONG_MIN, LLONG_MAX-999999999)) {
+	return LL2NUM(nsec(ts) + 1000000000 * (LONG_LONG)ts->tv_sec);
+    }
+#endif
+    return rb_funcall(LONG2FIX(nsec(ts)), '+', 1, rb_funcall(LONG2FIX(1000000000), '*', 1, UINT2NUM(ts->tv_sec)));
+}
+
 /*
  * Emulate clock_gettime() in Windows API calls.
  */
@@ -216,7 +243,7 @@ time_s_unix_microtime(VALUE klass)
     t = (double)ts.tv_sec;
     t += ((double)ts.tv_nsec / 1000000000.0);
 #else
-    if (gettimeofday(&tv, 0) < 0) {
+    if (gettimeofday(&ts, 0) < 0) {
 	rb_sys_fail("gettimeofday");
     }
     t = (double)ts.tv_sec;
