@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
 	s.name    = 'timestamp'
-	s.version = '1.0.2'
-	s.date    = '2013-07-19'
+	s.version = '1.0.2-win32'
+	s.date    = '2013-07-24'
 	s.summary = 'Time.timestamp'
 	s.description = <<EOS
 == Time.timestamp
