@@ -36,6 +36,7 @@ Time.unix_microtime    0.140000   4.160000   4.300000 (  4.301589)
 Time.timestamp         0.070000   4.320000   4.390000 (  4.392840)
 ```
 
+* [Documentation](http://phluid61.github.io/timestamp-gem/)
 * [Contributor Code of Conduct](code_of_conduct.md)
 * [![Build Status](https://travis-ci.org/phluid61/timestamp-gem.png)](https://travis-ci.org/phluid61/timestamp-gem)
 
