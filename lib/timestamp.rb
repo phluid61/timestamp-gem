@@ -20,14 +20,6 @@ if defined?(JRUBY_VERSION)
 		end
 	end
 else
-	begin
-		require 'timestamp/timestamp'
-	rescue LoadError
-		begin
-			require "timestamp/timestamp.#{RbConfig::CONFIG['DLEXT']}"
-		rescue LoadError
-			require "timestamp.#{RbConfig::CONFIG['DLEXT']}"
-		end
-	end
+	require_relative "timestamp.#{RbConfig::CONFIG['DLEXT']}"
 end
 

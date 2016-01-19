@@ -1,7 +1,7 @@
 require 'test/unit'
 $VERBOSE = true
 
-require "#{File.dirname File.dirname(__FILE__)}/lib/timestamp"
+require_relative '../lib/timestamp'
 
 class Test_timestamp < Test::Unit::TestCase
 	def test_timestamp
