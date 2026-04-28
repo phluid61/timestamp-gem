@@ -41,6 +41,11 @@ Time.timestamp         0.070000   4.320000   4.390000 (  4.392840)
 
 * [Documentation](http://phluid61.github.io/timestamp-gem/)
 
+## Contributing
+
+We require all contributors to comply with the [Developer Certificate of Origin](https://developercertificate.org/). This ensures that all contributions are properly licensed and attributed.
+
+
 ## Contributor Code of Conduct
 
 This repository is subject to a [Contributor Code of Conduct](code_of_conduct.md)
