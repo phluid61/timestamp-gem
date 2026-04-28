@@ -40,6 +40,19 @@ Time.timestamp         0.070000   4.320000   4.390000 (  4.392840)
 ```
 
 * [Documentation](http://phluid61.github.io/timestamp-gem/)
-* [Contributor Code of Conduct](code_of_conduct.md)
-* [![Build Status](https://travis-ci.org/phluid61/timestamp-gem.png)](https://travis-ci.org/phluid61/timestamp-gem)
+
+## Contributor Code of Conduct
+
+This repository is subject to a [Contributor Code of Conduct](code_of_conduct.md)
+adapted from the [Contributor Covenant][cc], version 3.0, available at
+<https://www.contributor-covenant.org/version/3/0/>
+
+
+[cc]: https://www.contributor-covenant.org
+
+
+## Licence
+
+This project is licensed under the ISC licence. See [LICENSE](LICENSE)
+for details
 
